@@ -39,4 +39,18 @@ public class EmployeeService {
                 .orElseThrow(() -> new UsernotFoundException("User by id" + id + "NOT FOUND"));
    }
 
+    public void updateByPhone(String phone , Long id){
+        int effectiverows;
+        if(!(employeerepo.existsByPhone(phone))) {
+            System.out.println(phone);
+            effectiverows = employeerepo.updatePhone(phone, id);
+            if (effectiverows > 0)
+                System.out.println("UPDATE SUCCESSFUL");
+        }
+
+     }
+     public List<Employee> findAllEmployee(){
+        return employeerepo.findAllEmployee();
+     }
+
 }

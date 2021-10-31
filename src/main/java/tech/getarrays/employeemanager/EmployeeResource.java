@@ -7,8 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import tech.getarrays.employeemanager.model.Employee;
 import tech.getarrays.employeemanager.service.EmployeeService;
 
+import javax.transaction.Transactional;
 import java.util.List;
-
+@Transactional
 @RestController
 @RequestMapping("/employee")
 public class EmployeeResource {
@@ -27,6 +28,11 @@ public class EmployeeResource {
         Employee employee = employeeservice.findEmployeeBYId(id);
         return new ResponseEntity(employee , HttpStatus.OK);
    }
+    @GetMapping("/findAllEmployee")
+    public ResponseEntity<List<Employee>> findAllEmployee(){
+         List<Employee> e = employeeservice.findAllEmployee();
+        return new ResponseEntity<>( e , HttpStatus.OK);
+    }
 
    @PostMapping("/add")
     public ResponseEntity<Employee> addEmployee(@RequestBody  Employee employee){
@@ -41,9 +47,19 @@ public class EmployeeResource {
 
 
     }
+    @PutMapping("/Update/{id}/{phone}")
+    public ResponseEntity<Employee> updateEmployeeByPhone(@PathVariable("phone") String phone , @PathVariable("id")  Long id){
+         employeeservice.updateByPhone(phone , id);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+
+
+
+    }
+
 
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Employee> updateEmployee(@PathVariable("id")  Long id){
+    public ResponseEntity<Employee> deleteEmployee(@PathVariable("id")  Long id){
          employeeservice.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
 

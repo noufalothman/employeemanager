@@ -14,19 +14,45 @@ public class Employee implements Serializable {
     private String jobTitle;
     private String phone;
     private String imageUrl ;
-    @Column(nullable = false , updatable = false)
+    @Column( updatable = false)
     private String employeeCode;
+    private boolean Active;
+    private boolean vacation;
+
+
+
+
+    public boolean isVacation() {
+        return vacation;
+    }
+
+    public void setVacation(boolean vacation) {
+        this.vacation = vacation;
+    }
+
+
+
+    public boolean isActive() {
+        return Active;
+    }
+
+    public void setActive(boolean active) {
+        this.Active = active;
+    }
+
+
 
     public Employee(){}
 
 
-    public Employee(String name, String email, String jobTitle, String phone, String imageUrl, String employeeCode) {
+    public Employee(String name, String email, String jobTitle, String phone, String imageUrl, String employeeCode, boolean active) {
         this.name = name;
         this.email = email;
         this.jobTitle = jobTitle;
         this.phone = phone;
         this.imageUrl = imageUrl;
         this.employeeCode = employeeCode;
+        this.Active = active;
     }
 
     public Long getId() {
@@ -84,7 +110,6 @@ public class Employee implements Serializable {
     public void setEmployeeCode(String employeeCode) {
         this.employeeCode = employeeCode;
     }
-
     @Override
     public String toString() {
         return "Employee{" +
@@ -95,6 +120,10 @@ public class Employee implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", employeeCode='" + employeeCode + '\'' +
+                ", Active=" + Active +
+                ", vacation=" + vacation +
                 '}';
     }
+
 }
+
