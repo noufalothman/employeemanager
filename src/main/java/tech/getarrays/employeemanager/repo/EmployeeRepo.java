@@ -7,6 +7,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import tech.getarrays.employeemanager.model.Employee;
 
+
 import java.util.List;
 import java.util.Optional;
 @Repository
@@ -27,4 +28,6 @@ public interface EmployeeRepo extends JpaRepository<Employee , Long> { //this ma
     @Query("SELECT e FROM Employee e")
     List<Employee> findAllEmployee();
 
+    @Query("SELECT R FROM rolelist R")
+    List<String> findAllRoles();
 }

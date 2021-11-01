@@ -2,8 +2,10 @@ package tech.getarrays.employeemanager.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
-@Entity //make sure this class maps to any database we configured on calss path
+import java.util.List;
 
+@Entity //make sure this class maps to any database we configured on calss path
+@Table(name = "employee")
 public class Employee implements Serializable {
     @Id //assign as primary key
     @GeneratedValue(strategy = GenerationType.AUTO) //tell how to generate information and "pass the strategy optional"
@@ -18,9 +20,6 @@ public class Employee implements Serializable {
     private String employeeCode;
     private boolean Active;
     private boolean vacation;
-
-
-
 
     public boolean isVacation() {
         return vacation;

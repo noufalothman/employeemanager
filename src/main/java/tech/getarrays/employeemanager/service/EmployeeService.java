@@ -21,6 +21,13 @@ public class EmployeeService {
 
     public Employee addEmployee(Employee employee){
        employee.setEmployeeCode(UUID.randomUUID().toString()); //i should generate employee code
+        if(employee.isActive() == false) {
+            System.out.println("it falseee");
+        }
+        if(employee.isActive() == true) {
+            System.out.println("it true");
+
+        }
         return employeerepo.save(employee);
    }
     public List<Employee> findAllEmployees(){
@@ -53,4 +60,7 @@ public class EmployeeService {
         return employeerepo.findAllEmployee();
      }
 
+    public List<String> getRole() {
+        return employeerepo.findAllRoles();
+    }
 }

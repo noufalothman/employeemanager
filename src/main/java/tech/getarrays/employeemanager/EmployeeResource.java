@@ -36,6 +36,10 @@ public class EmployeeResource {
 
    @PostMapping("/add")
     public ResponseEntity<Employee> addEmployee(@RequestBody  Employee employee){
+        if(employee.isActive() == false)
+            System.out.println("LOOOOOOOOOOOOOOOOOOOOL");
+       if(employee.isActive() == true)
+           System.out.println("BAAAAAAAAAAAAAAAAAAAAAAAAD");
        Employee newemployee = employeeservice.addEmployee(employee);
        return new ResponseEntity<>(newemployee , HttpStatus.CREATED);
 
@@ -63,6 +67,13 @@ public class EmployeeResource {
          employeeservice.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
 
+    }
+
+    @RequestMapping("/rolelist")
+    @GetMapping("/all")
+    public ResponseEntity<List<String>> getRole(){
+        List<String> Roles =employeeservice.getRole();
+        return new ResponseEntity<>(Roles,HttpStatus.OK);
     }
 }
 //control and service like mirror 
